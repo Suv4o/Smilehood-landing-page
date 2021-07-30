@@ -1,0 +1,55 @@
+//XSmall: 350px Small: 576px, Medium: 768px, Large: 992px, XLarge: 1200px, XXLarge: 1470px, XXXLarge: 1920px
+$breakpoints-up: (
+  "xsmall": "21.875em",
+  "small": "36em",
+  "medium": "48em",
+  "large": "62em",
+  "xlarge": "75em",
+  "xxlarge": "91.875em",
+  "xxxlarge": "120em"
+);
+
+//XXSmall: 349px  XSmall: 575px, Small: 767px, Medium: 991px, Large: 1199px, XXLarge: 1469px, XXXLarge: 1919px
+$breakpoints-down: (
+  "xxsmall": "21.8125em",
+  "xsmall": "35.9375em",
+  "small": "47.9375em",
+  "medium": "61.9375em",
+  "large": "74.9375em",
+  "xlarge": "91.8125em",
+  "xxlarge": "119.9375em"
+);
+
+//small: 500px
+$breakpoints-height-up: (
+  "small": "31.25em"
+);
+
+//small: 499px
+$breakpoints-height-down: (
+  "small": "31.1875em"
+);
+
+@mixin breakpoint-up($size) {
+  @media (min-width: map-get($breakpoints-up, $size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @media (max-width: map-get($breakpoints-down, $size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-height-up($size) {
+  @media (min-height: map-get($breakpoints-height-up, $size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-height-down($size) {
+  @media (max-height: map-get($breakpoints-height-down, $size)) {
+    @content;
+  }
+}
