@@ -1,11 +1,13 @@
 @import "_breakpoints.scss";
 @import "_variables.scss";
 
-html,
 body {
-  background-color: $black-color;
+  background-color: $gray-color;
+  font-family: acumin-pro, sans-serif;
 }
 
+html,
+body,
 *,
 *::before,
 *::after {
@@ -19,10 +21,101 @@ a {
   text-decoration: none;
 }
 
+a:focus,
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-  outline: none;
-  // outline: 1px solid $purple-color;
+  outline: 5px dotted $yellow-color;
+  outline-offset: 5px;
+}
+
+::selection {
+  color: $gray-color;
+  background: $yellow-color;
+}
+
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 120rem;
+}
+
+.bg {
+  &__img {
+    background-image: url("https://res.cloudinary.com/smilehood/image/upload/q_auto,f_auto,w_1400,e_sharpen:100/v1627649149/landing-page/bg_img_croped");
+    height: 100vh;
+    min-height: 800px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 100% 50%;
+  }
+}
+
+.content {
+  margin-left: 215px;
+  .logo {
+    width: 554px;
+    height: 110px;
+    margin-top: 116px;
+  }
+
+  .moto {
+    width: 535px;
+    height: 188px;
+    color: $off-white-color;
+    font-size: 86px;
+    font-weight: 500;
+    line-height: 1.19;
+    text-align: left;
+    margin-top: 193px;
+  }
+
+  .subscribe-group {
+    display: flex;
+    margin-top: 188px;
+    input {
+      width: 451px;
+      height: 44px;
+      padding-left: 15px;
+      padding-right: 15px;
+      color: $light-gray-color;
+      border: solid 1px $white-color;
+      background-color: $gray-color;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.61;
+      text-align: left;
+      border-radius: 4px;
+    }
+    button {
+      width: 140px;
+      height: 45px;
+      border-color: transparent;
+      border-radius: 5px;
+      background-color: $yellow-color;
+      margin-left: 14px;
+      font-size: 18px;
+      font-weight: 200;
+      line-height: 1.28;
+      color: $black-color;
+      cursor: pointer;
+      transition: opacity 0.5s ease-in-out, border 0.3s ease-in-out;
+      &:hover {
+        opacity: 0.7;
+        border: 1px solid $gray-color;
+      }
+    }
+  }
+  .info-msg {
+    width: 270px;
+    height: 62px;
+    margin-top: 24px;
+    font-size: 23px;
+    font-weight: 200;
+    line-height: 1.39;
+    text-align: left;
+    color: $off-white-color;
+  }
 }
