@@ -47,6 +47,11 @@ button:focus {
 
 .bg {
   position: relative;
+  overflow: hidden;
+  @include breakpoint-down(xsmall) {
+    display: flex;
+    align-items: center;
+  }
   &__img {
     background-image: url("https://res.cloudinary.com/smilehood/image/upload/q_auto,f_auto,w_1400,e_sharpen:100/v1627649149/landing-page/bg_img_croped");
     height: 100vh;
@@ -108,6 +113,89 @@ button:focus {
       }
     }
   }
+  .footer {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 325px;
+    background-color: $yellow-color;
+    &__content {
+      display: flex;
+      justify-content: space-between;
+      margin-left: 215px;
+      margin-right: 215px;
+      @include breakpoint-down(xlarge) {
+        margin-left: 150px;
+        margin-right: 150px;
+      }
+      @include breakpoint-down(large) {
+        margin-left: 100px;
+        margin-right: 100px;
+      }
+      @include breakpoint-down(xsmall) {
+        margin-left: 25px;
+        margin-right: 25px;
+      }
+      ::selection {
+        color: $yellow-color;
+        background: $gray-color;
+      }
+      & > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        p {
+          font-size: 43px;
+          font-weight: 200;
+          line-height: 0.74;
+          text-align: left;
+          color: $black-color;
+          margin-bottom: 24px;
+        }
+        .btn {
+          height: 38px;
+          padding-left: 34px;
+          padding-right: 34px;
+          border: transparent;
+          border-radius: 5px;
+          color: $black-color;
+          background-color: $white-color;
+          font-size: 18px;
+          font-weight: 200;
+          line-height: 1.28;
+          cursor: pointer;
+          transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+          &:disabled {
+            opacity: 0.5;
+            cursor: unset;
+            &:hover {
+              color: $black-color;
+              background-color: $white-color;
+            }
+          }
+          &:hover {
+            background-color: $gray-color;
+            color: $white-color;
+          }
+        }
+        .coming-soon {
+          font-size: 23px;
+          font-weight: 200;
+          line-height: 1.39;
+          margin-left: 31px;
+          color: $black-color;
+        }
+      }
+      .line {
+        width: 1px;
+        height: 155px;
+        background-color: $orange-color;
+      }
+    }
+  }
 }
 
 .content {
@@ -134,12 +222,11 @@ button:focus {
     @include breakpoint-down(xsmall) {
       width: 271px;
       height: 54px;
-      margin-top: 57px;
+      margin-top: 0;
     }
     @include breakpoint-down(xxsmall) {
       width: 217px;
       height: 43px;
-      margin-top: 40px;
     }
   }
 
@@ -149,7 +236,7 @@ button:focus {
     margin-top: 18vh - (18vh * 0.35);
     color: $off-white-color;
     font-size: 86px;
-    font-weight: 500;
+    font-weight: 200;
     line-height: 1.19;
     text-align: left;
     @include breakpoint-height-up(large) {
