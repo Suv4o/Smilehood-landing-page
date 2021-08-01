@@ -27,7 +27,10 @@ select:focus,
 textarea:focus,
 button:focus {
   outline: 5px dotted $yellow-color;
-  outline-offset: 5px;
+  outline-offset: 3px;
+  @include breakpoint-down(small) {
+    outline-offset: 3px;
+  }
 }
 
 ::selection {
@@ -43,79 +46,209 @@ button:focus {
 }
 
 .bg {
+  position: relative;
   &__img {
     background-image: url("https://res.cloudinary.com/smilehood/image/upload/q_auto,f_auto,w_1400,e_sharpen:100/v1627649149/landing-page/bg_img_croped");
     height: 100vh;
-    min-height: 800px;
+    min-height: 750px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 100% 50%;
+    @include breakpoint-down(xxlarge) {
+      background-position: 50% 50%;
+    }
+    @include breakpoint-down(large) {
+      background-position: 70% 50%;
+    }
+    @include breakpoint-down(xsmall) {
+      min-height: 550px;
+    }
+  }
+  .btn_show-more {
+    position: absolute;
+    right: 246px;
+    right: 13%;
+    bottom: 0;
+    width: 113px;
+    height: 115px;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border: transparent;
+    background-color: $yellow-color;
+    cursor: pointer;
+    @include breakpoint-down(small) {
+      width: 79px;
+      height: 80px;
+    }
+    @include breakpoint-down(xsmall) {
+      width: 63px;
+      height: 64px;
+    }
+    svg {
+      @include breakpoint-down(small) {
+        transform: scale(0.75);
+      }
+      @include breakpoint-down(xsmall) {
+        transform: scale(0.6);
+      }
+      path {
+        transition: all 0.5s ease-in-out;
+        stroke: $white-color;
+      }
+    }
+    transition: background-color 0.5s ease-in-out, border 0.3s ease-in-out;
+    &:hover {
+      background-color: $darker-yellow-color;
+      border: 1px solid $gray-color;
+      svg {
+        path {
+          transition: all 0.5s ease-in-out;
+          stroke: $gray-color;
+        }
+      }
+    }
   }
 }
 
 .content {
   margin-left: 215px;
+  @include breakpoint-down(xlarge) {
+    margin-left: 150px;
+  }
+  @include breakpoint-down(large) {
+    margin-left: 100px;
+  }
+  @include breakpoint-down(xsmall) {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
   .logo {
     width: 554px;
     height: 110px;
     margin-top: 116px;
+    @include breakpoint-down(small) {
+      width: 387px;
+      height: 77px;
+      margin-top: 81px;
+    }
+    @include breakpoint-down(xsmall) {
+      width: 271px;
+      height: 54px;
+      margin-top: 57px;
+    }
+    @include breakpoint-down(xxsmall) {
+      width: 217px;
+      height: 43px;
+      margin-top: 40px;
+    }
   }
 
   .moto {
     width: 535px;
     height: 188px;
+    margin-top: 18vh - (18vh * 0.35);
     color: $off-white-color;
     font-size: 86px;
     font-weight: 500;
     line-height: 1.19;
     text-align: left;
-    margin-top: 193px;
+    @include breakpoint-height-up(large) {
+      margin-top: 193px;
+    }
+    @include breakpoint-height-down(small) {
+      margin-top: 87px;
+    }
+    @include breakpoint-down(small) {
+      font-size: 60px;
+      width: 374px;
+      height: 132px;
+      line-height: 1.1;
+    }
+    @include breakpoint-down(xsmall) {
+      font-size: 42px;
+      width: 262px;
+      height: 93px;
+    }
+    @include breakpoint-down(xxsmall) {
+      font-size: 34px;
+      width: 210px;
+      height: 74px;
+    }
   }
 
   .subscribe-group {
-    display: flex;
-    margin-top: 188px;
-    input {
-      width: 451px;
-      height: 44px;
-      padding-left: 15px;
-      padding-right: 15px;
-      color: $light-gray-color;
-      border: solid 1px $white-color;
-      background-color: $gray-color;
-      font-size: 18px;
-      font-weight: 300;
-      line-height: 1.61;
-      text-align: left;
-      border-radius: 4px;
+    margin-top: 17vh - (17vh * 0.35);
+    @include breakpoint-height-up(large) {
+      margin-top: 188px;
     }
-    button {
-      width: 140px;
-      height: 45px;
-      border-color: transparent;
-      border-radius: 5px;
-      background-color: $yellow-color;
-      margin-left: 14px;
-      font-size: 18px;
-      font-weight: 200;
-      line-height: 1.28;
-      color: $black-color;
-      cursor: pointer;
-      transition: opacity 0.5s ease-in-out, border 0.3s ease-in-out;
-      &:hover {
-        opacity: 0.7;
-        border: 1px solid $gray-color;
+    @include breakpoint-height-down(small) {
+      margin-top: 82px;
+    }
+    .enter-email {
+      display: flex;
+      input {
+        width: 451px;
+        height: 44px;
+        padding-left: 15px;
+        padding-right: 15px;
+        color: $light-gray-color;
+        border: solid 1px $white-color;
+        background-color: $gray-color;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.61;
+        text-align: left;
+        border-radius: 4px;
+        @include breakpoint-down(small) {
+          width: 315px;
+          height: 31px;
+          padding-left: 11px;
+          padding-right: 11px;
+          font-size: 13px;
+          border-radius: 2.8px;
+        }
+      }
+      button {
+        width: 140px;
+        height: 45px;
+        border-color: transparent;
+        border-radius: 5px;
+        background-color: $yellow-color;
+        margin-left: 14px;
+        font-size: 18px;
+        font-weight: 200;
+        line-height: 1.28;
+        color: $black-color;
+        cursor: pointer;
+        transition: background-color 0.5s ease-in-out, border 0.3s ease-in-out;
+        @include breakpoint-down(small) {
+          width: 98px;
+          height: 31.5px;
+          border-radius: 3.5px;
+          margin-left: 9.8px;
+          font-size: 12.6px;
+        }
+        &:hover {
+          background-color: $darker-yellow-color;
+          border: 1px solid $gray-color;
+        }
       }
     }
-  }
-  .info-msg {
-    width: 270px;
-    height: 62px;
-    margin-top: 24px;
-    font-size: 23px;
-    font-weight: 200;
-    line-height: 1.39;
-    text-align: left;
-    color: $off-white-color;
+    .info-msg {
+      width: 270px;
+      height: 62px;
+      margin-top: 24px;
+      font-size: 23px;
+      font-weight: 200;
+      line-height: 1.39;
+      text-align: left;
+      color: $off-white-color;
+      @include breakpoint-down(small) {
+        width: 189px;
+        height: 43px;
+        margin-top: 16px;
+        font-size: 16px;
+      }
+    }
   }
 }

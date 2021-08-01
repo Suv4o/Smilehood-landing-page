@@ -6,7 +6,7 @@ $breakpoints-up: (
   "large": "62em",
   "xlarge": "75em",
   "xxlarge": "91.875em",
-  "xxxlarge": "120em"
+  "xxxlarge": "120em",
 );
 
 //XXSmall: 349px  XSmall: 575px, Small: 767px, Medium: 991px, Large: 1199px, XXLarge: 1469px, XXXLarge: 1919px
@@ -17,17 +17,21 @@ $breakpoints-down: (
   "medium": "61.9375em",
   "large": "74.9375em",
   "xlarge": "91.8125em",
-  "xxlarge": "119.9375em"
+  "xxlarge": "119.9375em",
 );
 
-//small: 500px
+//Large: 1075px, Medium: 750px, Small: 350px
 $breakpoints-height-up: (
-  "small": "31.25em"
+  "large": "67.1875em",
+  "medium": "46.875em",
+  "small": "34.375em",
 );
 
-//small: 499px
+//Medium: 1074px, Small: 749px, XSmall: 349px
 $breakpoints-height-down: (
-  "small": "31.1875em"
+  "medium": "67.125em",
+  "small": "46.8125em",
+  "xsmall": "34.3125em",
 );
 
 @mixin breakpoint-up($size) {
