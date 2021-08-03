@@ -1,16 +1,29 @@
 import "./assets/scss/style.scss";
 
-const btnShowMore = document.getElementById("btn-show-more");
-const footerHeight = document.getElementById("footer").offsetHeight;
-const showMoreBtnHeight = document.getElementById("btn-show-more").offsetHeight;
-const windowSize = {
-  width: document.documentElement.clientWidth,
-  height: document.documentElement.clientHeight,
-};
+let btnShowMore = document.getElementById("btn-show-more");
+let footerHeight = document.getElementById("footer").offsetHeight;
+let bgPositionX =
+  getWidthSize() <= 1919 && getWidthSize() > 1469
+    ? "50%"
+    : getWidthSize() <= 1469
+    ? "70%"
+    : "100%";
+let showMoreBtnHeight = document.getElementById("btn-show-more").offsetHeight;
+const windowSize = setWindowSize();
+
+// Watch WIDTH property on value change
+windowSize.setWatcherWidth((val) => {
+  console.log("Width: ", val);
+});
+
+// Watch HEIGHT property on value change
+windowSize.setWatcherHeight((val) => {
+  console.log("Height: ", val);
+});
 
 // Event Listeners
 btnShowMore.addEventListener("click", showMore);
-window.addEventListener("resize", resizeWindow);
+window.addEventListener("resize", setWindowResize);
 
 // GSAP Initialization. We add animations to the timeline below
 let tl = gsap.timeline();
@@ -53,7 +66,7 @@ function showMoreAnimation() {
       {
         delay: 0.1,
         duration: 0.3,
-        backgroundPosition: `100% -${footerHeight}px`,
+        backgroundPosition: `${bgPositionX} -${footerHeight}px`,
         ease: "power4.out",
       },
       "-=0.4"
@@ -71,8 +84,44 @@ function showMoreAnimation() {
   });
 }
 
-function resizeWindow() {
-  windowSize.width = document.documentElement.clientWidth;
-  windowSize.height = document.documentElement.clientHeight;
-  console.log(windowSize);
+function setWindowResize() {
+  windowSize.width = getWidthSize();
+  windowSize.height = getHeightSize();
+}
+
+function getWidthSize() {
+  return document.documentElement.clientWidth;
+}
+
+function getHeightSize() {
+  return document.documentElement.clientHeight;
+}
+
+function setWindowSize() {
+  return {
+    widthInternal: getWidthSize(),
+    heightInternal: getHeightSize(),
+    widthWatcher: function (val) {},
+    heightWatcher: function (val) {},
+    set width(val) {
+      this.widthInternal = val;
+      this.widthWatcher(val);
+    },
+    set height(val) {
+      this.heightInternal = val;
+      this.heightWatcher(val);
+    },
+    get width() {
+      return this.widthInternal;
+    },
+    get height() {
+      return this.heightInternal;
+    },
+    setWatcherWidth: function (watcher) {
+      this.widthWatcher = watcher;
+    },
+    setWatcherHeight: function (watcher) {
+      this.heightWatcher = watcher;
+    },
+  };
 }

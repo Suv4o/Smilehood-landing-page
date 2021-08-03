@@ -63,7 +63,7 @@ button:focus {
       background-position: 50% 50%;
     }
     @include breakpoint-down(large) {
-      background-position-x: 70% 50%;
+      background-position: 70% 50%;
     }
     @include breakpoint-down(xsmall) {
       min-height: 550px;
@@ -123,6 +123,18 @@ button:focus {
     width: 100%;
     height: 325px;
     background-color: $yellow-color;
+    @include breakpoint-down(medium) {
+      bottom: -227px;
+      height: 227px;
+    }
+    @media (max-height: 53.125em) and (min-width: 48em) {
+      bottom: -227px;
+      height: 227px;
+    }
+    @include breakpoint-down(small) {
+      bottom: -100%;
+      height: 100%;
+    }
     &__content {
       display: flex;
       justify-content: space-between;
@@ -135,6 +147,11 @@ button:focus {
       @include breakpoint-down(large) {
         margin-left: 100px;
         margin-right: 100px;
+      }
+      @include breakpoint-down(small) {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
       }
       @include breakpoint-down(xsmall) {
         margin-left: 25px;
@@ -156,6 +173,14 @@ button:focus {
           text-align: left;
           color: $black-color;
           margin-bottom: 24px;
+          @include breakpoint-down(medium) {
+            font-size: 30px;
+            margin-bottom: 17px;
+          }
+          @media (max-height: 53.125em) and (min-width: 48em) {
+            font-size: 30px;
+            margin-bottom: 17px;
+          }
         }
         .btn {
           height: 38px;
@@ -170,6 +195,20 @@ button:focus {
           line-height: 1.28;
           cursor: pointer;
           transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+          @include breakpoint-down(medium) {
+            height: 26px;
+            padding-left: 24px;
+            padding-right: 24px;
+            border-radius: 3.5px;
+            font-size: 13px;
+          }
+          @media (max-height: 53.125em) and (min-width: 48em) {
+            height: 26px;
+            padding-left: 24px;
+            padding-right: 24px;
+            border-radius: 3.5px;
+            font-size: 13px;
+          }
           &:disabled {
             opacity: 0.5;
             cursor: unset;
@@ -189,12 +228,32 @@ button:focus {
           line-height: 1.39;
           margin-left: 31px;
           color: $black-color;
+          @include breakpoint-down(medium) {
+            font-size: 16px;
+            margin-left: 22px;
+          }
+          @media (max-height: 53.125em) and (min-width: 48em) {
+            font-size: 16px;
+            margin-left: 22px;
+          }
         }
       }
       .line {
         width: 1px;
         height: 155px;
         background-color: $orange-color;
+        @include breakpoint-down(medium) {
+          height: 108px;
+        }
+        @media (max-height: 53.125em) and (min-width: 48em) {
+          height: 108px;
+        }
+        @include breakpoint-down(small) {
+          margin-top: 30px;
+          margin-bottom: 30px;
+          height: 1px;
+          width: 180px;
+        }
       }
     }
   }
