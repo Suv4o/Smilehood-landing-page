@@ -81,7 +81,7 @@
           <div class="footer__content">
             <div>
               <p>Investors</p>
-              <button class="btn">Contact</button>
+              <button id="btn-contact" class="btn">Contact</button>
             </div>
             <div class="line"></div>
             <div>
@@ -97,6 +97,24 @@
               <button class="btn">See Open Positions</button>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div id="contact-modal" class="contact__modal">
+      <div id="contact-modal-content" class="contact__modal-content">
+        <div>
+          <p>Investor Contact</p>
+          <form id="contact-form">
+            <input name="name" placeholder="Name" type="text" />
+            <input name="email" placeholder="Email" type="text" />
+            <textarea
+              name="message"
+              placeholder="Message"
+              cols="30"
+              rows="10"
+            ></textarea>
+            <button id="btn-send" type="submit">Send</button>
+          </form>
         </div>
       </div>
     </div>

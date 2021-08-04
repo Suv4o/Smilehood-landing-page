@@ -1,5 +1,12 @@
 import "./assets/scss/style.scss";
 
+// Assign elements
+const btnSend = document.getElementById("btn-send");
+const btnContact = document.getElementById("btn-contact");
+const contactModal = document.getElementById("contact-modal");
+const contactModalContent = document.getElementById("contact-modal-content");
+
+// Get the values of each element on initial load. We update these values on window resize
 let btnShowMore = document.getElementById("btn-show-more");
 let footerHeight = document.getElementById("footer").offsetHeight;
 let bgPositionX =
@@ -10,10 +17,13 @@ let bgPositionX =
     : "100%";
 let showMoreBtnHeight = document.getElementById("btn-show-more").offsetHeight;
 let isMobileScreen = getWidthSize() <= 767;
-const windowSize = setWindowSize();
 
-// GSAP Initialization. We add animations to the timeline below
-let tl = gsap.timeline();
+// GSAP Timelines Initialization. We add animations to the timelines below
+let tlShowMore = gsap.timeline();
+let tlShowContactModal = gsap.timeline();
+
+// Define window WIDTH and HEIGHT
+const windowSize = setWindowSize();
 
 // Watch WIDTH property on value change
 windowSize.setWatcherWidth(() => {
@@ -23,23 +33,30 @@ windowSize.setWatcherWidth(() => {
 
 // Event Listeners
 btnShowMore.addEventListener("click", showMore);
+btnContact.addEventListener("click", showContactModal);
+contactModal.addEventListener("click", hideContactModal);
+contactModalContent.addEventListener("click", (e) => e.stopPropagation());
 window.addEventListener("resize", setWindowResize);
 
 async function showMore() {
   // Check if the timeline is Active. If there is an existing animation, return. Otherwise continue.
-  if (tl.isActive()) return;
+  if (tlShowMore.isActive()) return;
   await showMoreAnimation();
   setTimeout(() => {
-    tl.reverse();
+    tlShowMore.reverse();
   }, 5000);
 }
 
 function showMoreAnimation() {
   return new Promise((resolve) => {
-    tl = gsap.timeline({ onComplete: () => resolve() });
-    tl.to("#show-more-arrow", { duration: 0.5, bottom: 0, rotation: 180 });
+    tlShowMore = gsap.timeline({ onComplete: () => resolve() });
+    tlShowMore.to("#show-more-arrow", {
+      duration: 0.5,
+      bottom: 0,
+      rotation: 180,
+    });
     if (!isMobileScreen) {
-      tl.to(
+      tlShowMore.to(
         "#moto",
         {
           duration: 0.5,
@@ -49,19 +66,19 @@ function showMoreAnimation() {
         "-=0.5"
       );
     }
-    tl.to("#btn-show-more", {
+    tlShowMore.to("#btn-show-more", {
       duration: 0.3,
       ease: "power4.out",
       bottom: -(showMoreBtnHeight + 10),
     });
-    tl.to("#footer", {
+    tlShowMore.to("#footer", {
       delay: 0.1,
       duration: 0.3,
       bottom: 0,
       ease: "power4.out",
     });
     if (!isMobileScreen) {
-      tl.to(
+      tlShowMore.to(
         "#bg_img",
         {
           delay: 0.1,
@@ -71,7 +88,7 @@ function showMoreAnimation() {
         },
         "-=0.4"
       );
-      tl.to(
+      tlShowMore.to(
         "#subscribe-group",
         {
           delay: 0.1,
@@ -112,13 +129,16 @@ function updateValues() {
 }
 
 function clearAnimation() {
-  tl.clear();
+  tlShowMore.clear();
+  tlShowContactModal.clear();
   gsap.set("#show-more-arrow", { clearProps: "all" });
   gsap.set("#moto", { clearProps: "all" });
   gsap.set("#btn-show-more", { clearProps: "all" });
   gsap.set("#footer", { clearProps: "all" });
   gsap.set("#bg_img", { clearProps: "all" });
   gsap.set("#subscribe-group", { clearProps: "all" });
+  gsap.set("#contact-modal", { clearProps: "all" });
+  gsap.set("#contact-modal-content", { clearProps: "all" });
 }
 
 function setWindowSize() {
@@ -148,4 +168,31 @@ function setWindowSize() {
       this.heightWatcher = watcher;
     },
   };
+}
+
+function showContactModal() {
+  showContactModalAnimation();
+}
+
+function hideContactModal() {
+  hideContactModalAnimation();
+}
+
+function showContactModalAnimation() {
+  return new Promise((resolve) => {
+    tlShowContactModal = gsap.timeline({ onComplete: () => resolve() });
+    tlShowContactModal.to("#contact-modal", {
+      duration: 0.1,
+      display: "block",
+    });
+    tlShowContactModal.to("#contact-modal-content", {
+      duration: 0.5,
+      opacity: 1,
+      ease: "power4.out",
+    });
+  }, "-=0.1");
+}
+
+function hideContactModalAnimation() {
+  tlShowContactModal.reverse();
 }
