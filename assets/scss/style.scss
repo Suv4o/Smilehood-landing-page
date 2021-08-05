@@ -166,6 +166,9 @@ button:focus {
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
+        @include breakpoint-down(xsmall) {
+          align-items: center;
+        }
         p {
           font-size: 43px;
           font-weight: 200;
@@ -405,23 +408,33 @@ button:focus {
 .contact {
   &__modal {
     display: none;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    padding-top: 20vh;
+    padding-left: 15px;
+    padding-right: 15px;
   }
   &__modal-content {
     opacity: 0;
-    margin: auto;
-    width: 579px;
+    max-width: 579px;
     height: 603px;
     padding: 60px 64px;
     border-radius: 4px;
     background-color: rgb(69, 69, 69, 0.1);
     -webkit-backdrop-filter: blur(30px);
     backdrop-filter: blur(30px);
+    @include breakpoint-down(small) {
+      height: 480px;
+      background-color: rgb(69, 69, 69, 0.3);
+    }
+    @include breakpoint-down(xsmall) {
+      padding: 42px 45px;
+      height: 440px;
+    }
     div {
       display: flex;
       flex-direction: column;
@@ -432,6 +445,13 @@ button:focus {
       font-weight: 200;
       margin-bottom: 30px;
       color: $black-color;
+      @include breakpoint-down(small) {
+        font-size: 30px;
+        margin-bottom: 21px;
+      }
+      @include breakpoint-down(xxsmall) {
+        font-size: 24px;
+      }
     }
     input {
       width: 100%;
@@ -445,6 +465,12 @@ button:focus {
       font-weight: 300;
       line-height: 1.61;
       color: $light-gray-color;
+      @include breakpoint-down(small) {
+        height: 31px;
+        margin-bottom: 7px;
+        border-radius: 2.8px;
+        font-size: 13px;
+      }
     }
     textarea {
       width: 100%;
@@ -460,6 +486,13 @@ button:focus {
       line-height: 1.61;
       resize: none;
       color: $light-gray-color;
+      @include breakpoint-down(small) {
+        height: 171px;
+        margin-bottom: 7px;
+        padding: 4px 10px;
+        border-radius: 2.8px;
+        font-size: 13px;
+      }
     }
 
     button {
@@ -474,6 +507,12 @@ button:focus {
       color: $black-color;
       cursor: pointer;
       transition: background-color 0.5s ease-in-out, border 0.3s ease-in-out;
+      @include breakpoint-down(small) {
+        width: 74px;
+        height: 27px;
+        border-radius: 3.5px;
+        font-size: 13px;
+      }
       &:hover {
         background-color: $darker-yellow-color;
         border: 1px solid $gray-color;

@@ -183,7 +183,7 @@ function showContactModalAnimation() {
     tlShowContactModal = gsap.timeline({ onComplete: () => resolve() });
     tlShowContactModal.to("#contact-modal", {
       duration: 0.1,
-      display: "block",
+      display: "flex",
     });
     tlShowContactModal.to("#contact-modal-content", {
       duration: 0.5,
