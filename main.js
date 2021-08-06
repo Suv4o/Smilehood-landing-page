@@ -5,6 +5,7 @@ import { firestore, functions } from "./firebase-init.js";
 const btnSend = document.getElementById("btn-send");
 const btnContact = document.getElementById("btn-contact");
 const formSubscribe = document.getElementById("form-subscribe");
+const subscribeMsg = document.getElementById("subscribe-msg");
 const contactModal = document.getElementById("contact-modal");
 const contactModalContent = document.getElementById("contact-modal-content");
 
@@ -209,7 +210,12 @@ async function subscribe(e) {
   if (!formValidation) {
     return;
   } else {
-    console.log("Success!");
+    subscribeMsg.className = "success-msg";
+    subscribeMsg.innerHTML = "Thank you for Subscribing.";
+    setTimeout(() => {
+      subscribeMsg.className = "";
+      subscribeMsg.innerHTML = "";
+    }, 10000);
   }
 }
 
@@ -219,7 +225,22 @@ async function isValid(objFormData) {
   const emailValidation = await isTheEmailValid(email);
 
   if (!emailValidation.isValid) {
-    console.log(emailValidation.msg);
+    subscribeMsg.className = "error-msg";
+    subscribeMsg.innerHTML = emailValidation.msg;
+    setTimeout(() => {
+      subscribeMsg.className = "";
+      subscribeMsg.innerHTML = "";
+    }, 10000);
+    return false;
+  }
+  const isSuccessful = await subscribeFirebase(email);
+  if (!isSuccessful) {
+    subscribeMsg.className = "error-msg";
+    subscribeMsg.innerHTML = "Something went wrong.";
+    setTimeout(() => {
+      subscribeMsg.className = "";
+      subscribeMsg.innerHTML = "";
+    }, 10000);
     return false;
   }
   return true;
@@ -238,7 +259,7 @@ async function isTheEmailValid(email) {
   if (isSubscribed) {
     return {
       isValid: false,
-      msg: "You're Already Subscribed!",
+      msg: "You're Already Subscribed.",
     };
   }
 
@@ -270,4 +291,18 @@ function isEmailDuplicate(field) {
 function isEmailValid(field) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field)) return false;
   return true;
+}
+
+async function subscribeFirebase(email) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      await firestore.collection("subscribers").add({
+        email: email.toLowerCase(),
+      });
+      resolve(true);
+    } catch (error) {
+      reject(false);
+      console.error("Error adding document in the database: ", error);
+    }
+  });
 }
