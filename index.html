@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
     <link rel="stylesheet" href="https://use.typekit.net/epe8ppm.css" />
+    <!-- <script type="module" src="firebase-init.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
     <script async type="module" src="/main.js"></script>
     <title>Smilehood - Bring a Smile to Everyone</title>
@@ -17,10 +18,10 @@
           <img class="logo" src="assets/img/logo.svg" alt="Smilehood Logo" />
           <p id="moto" class="moto">Bring a Smile to Everyone</p>
           <div id="subscribe-group" class="subscribe-group">
-            <div class="enter-email">
-              <input type="email" placeholder="john@gmail.com" />
-              <button>Subscribe</button>
-            </div>
+            <form id="form-subscribe" class="enter-email">
+              <input type="email" name="email" placeholder="john@gmail.com" />
+              <button type="submit">Subscribe</button>
+            </form>
             <p class="info-msg">
               Get notified when we go live to celebrate together
             </p>

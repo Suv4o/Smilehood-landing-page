@@ -63,9 +63,11 @@ button:focus {
       background-position: 50% 50%;
     }
     @include breakpoint-down(large) {
+      background-image: url("https://res.cloudinary.com/smilehood/image/upload/q_auto,f_auto,w_900,e_sharpen:100/v1627649149/landing-page/bg_img_croped");
       background-position: 70% 50%;
     }
     @include breakpoint-down(xsmall) {
+      background-image: url("https://res.cloudinary.com/smilehood/image/upload/q_auto,f_auto,w_700,e_sharpen:100/v1627649149/landing-page/bg_img_croped");
       min-height: 550px;
     }
   }

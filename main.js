@@ -1,8 +1,10 @@
 import "./assets/scss/style.scss";
+import { firestore, functions } from "./firebase-init.js";
 
 // Assign elements
 const btnSend = document.getElementById("btn-send");
 const btnContact = document.getElementById("btn-contact");
+const formSubscribe = document.getElementById("form-subscribe");
 const contactModal = document.getElementById("contact-modal");
 const contactModalContent = document.getElementById("contact-modal-content");
 
@@ -32,6 +34,7 @@ windowSize.setWatcherWidth(() => {
 });
 
 // Event Listeners
+formSubscribe.addEventListener("submit", subscribe);
 btnShowMore.addEventListener("click", showMore);
 btnContact.addEventListener("click", showContactModal);
 contactModal.addEventListener("click", hideContactModal);
@@ -195,4 +198,76 @@ function showContactModalAnimation() {
 
 function hideContactModalAnimation() {
   tlShowContactModal.reverse();
+}
+
+async function subscribe(e) {
+  e.preventDefault();
+  const objFormData = Object.fromEntries(new FormData(e.target));
+
+  const formValidation = await isValid(objFormData);
+
+  if (!formValidation) {
+    return;
+  } else {
+    console.log("Success!");
+  }
+}
+
+async function isValid(objFormData) {
+  const { email } = objFormData;
+
+  const emailValidation = await isTheEmailValid(email);
+
+  if (!emailValidation.isValid) {
+    console.log(emailValidation.msg);
+    return false;
+  }
+  return true;
+}
+
+async function isTheEmailValid(email) {
+  if (!isEmailValid(email)) {
+    return {
+      isValid: false,
+      msg: "Please enter a valid Email Address.",
+    };
+  }
+
+  const isSubscribed = await isEmailDuplicate(email);
+
+  if (isSubscribed) {
+    return {
+      isValid: false,
+      msg: "You're Already Subscribed!",
+    };
+  }
+
+  return {
+    isValid: true,
+  };
+}
+
+function isEmailDuplicate(field) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const result = await firestore
+        .collection("subscribers")
+        .where("email", "==", field.toLowerCase())
+        .get();
+
+      if (!result.empty) {
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    } catch (error) {
+      reject(false);
+      console.log("Error getting documents: ", error);
+    }
+  });
+}
+
+function isEmailValid(field) {
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field)) return false;
+  return true;
 }
