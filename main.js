@@ -4,6 +4,7 @@ import { firestore, functions } from "./firebase-init.js";
 // Assign elements
 const btnSend = document.getElementById("btn-send");
 const btnContact = document.getElementById("btn-contact");
+const btnSubscribe = document.getElementById("btn-subscribe");
 const formSubscribe = document.getElementById("form-subscribe");
 const subscribeMsg = document.getElementById("subscribe-msg");
 const contactModal = document.getElementById("contact-modal");
@@ -123,9 +124,9 @@ function updateValues() {
   btnShowMore = document.getElementById("btn-show-more");
   footerHeight = document.getElementById("footer").offsetHeight;
   bgPositionX =
-    getWidthSize() <= 1919 && getWidthSize() > 1469
+    getWidthSize() <= 1919 && getWidthSize() > 1199
       ? "50%"
-      : getWidthSize() <= 1469
+      : getWidthSize() <= 1199
       ? "70%"
       : "100%";
   showMoreBtnHeight = document.getElementById("btn-show-more").offsetHeight;
@@ -204,12 +205,24 @@ function hideContactModalAnimation() {
 async function subscribe(e) {
   e.preventDefault();
   const objFormData = Object.fromEntries(new FormData(e.target));
-
+  btnSubscribe.innerHTML = `<div class="loading-animation"><div></div><div></div><div></div><div></div></div>`;
+  btnSubscribe.disabled = true;
   const formValidation = await isValid(objFormData);
 
   if (!formValidation) {
+    btnSubscribe.innerHTML = `Subscribe`;
+    btnSubscribe.disabled = false;
     return;
   } else {
+    await sendingEmailToUs({
+      from: "Smilehood",
+      to: "mysmilehood@gmail.com",
+      subject: "New Subscriber!",
+      text: `We have new subscriber with email: ${objFormData.email}!`,
+    });
+    btnSubscribe.innerHTML = `Subscribe`;
+    btnSubscribe.disabled = false;
+    formSubscribe.reset();
     subscribeMsg.className = "success-msg";
     subscribeMsg.innerHTML = "Thank you for Subscribing.";
     setTimeout(() => {
@@ -303,6 +316,19 @@ async function subscribeFirebase(email) {
     } catch (error) {
       reject(false);
       console.error("Error adding document in the database: ", error);
+    }
+  });
+}
+
+function sendingEmailToUs(data) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const sendEmailToUs = functions.httpsCallable("sendEmailToUs");
+      await sendEmailToUs(data);
+      resolve(true);
+    } catch (error) {
+      console.log(error);
+      reject(false);
     }
   });
 }
