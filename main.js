@@ -14,9 +14,9 @@ const contactModalContent = document.getElementById("contact-modal-content");
 let btnShowMore = document.getElementById("btn-show-more");
 let footerHeight = document.getElementById("footer").offsetHeight;
 let bgPositionX =
-  getWidthSize() <= 1919 && getWidthSize() > 1469
+  getWidthSize() <= 1919 && getWidthSize() > 1199
     ? "50%"
-    : getWidthSize() <= 1469
+    : getWidthSize() <= 1199
     ? "70%"
     : "100%";
 let showMoreBtnHeight = document.getElementById("btn-show-more").offsetHeight;
@@ -32,6 +32,7 @@ const windowSize = setWindowSize();
 // Watch WIDTH property on value change
 windowSize.setWatcherWidth(() => {
   clearAnimation();
+  clearAllTimeouts(window);
   updateValues();
 });
 
@@ -200,6 +201,16 @@ function showContactModalAnimation() {
 
 function hideContactModalAnimation() {
   tlShowContactModal.reverse();
+}
+
+function clearAllTimeouts(windowObject) {
+  var id = Math.max(windowObject.setTimeout(noop, 1000));
+
+  while (id--) {
+    windowObject.clearInterval(id);
+  }
+
+  function noop() {}
 }
 
 async function subscribe(e) {
