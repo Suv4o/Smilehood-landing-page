@@ -197,7 +197,7 @@ button:focus {
           background-color: $white-color;
           font-size: 18px;
           font-weight: 200;
-          line-height: 1.28;
+          line-height: 2;
           cursor: pointer;
           transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
           @include breakpoint-down(medium) {
@@ -363,6 +363,9 @@ button:focus {
         }
       }
       button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 140px;
         height: 45px;
         border-color: transparent;
@@ -559,15 +562,11 @@ button:focus {
   position: absolute;
   width: 30px;
   height: 30px;
-  margin-top: 4px;
-  margin-bottom: 4px;
   border: 3px solid $white-color;
   border-radius: 50%;
   animation: loading-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: $white-color transparent transparent transparent;
   @include breakpoint-down(small) {
-    margin-top: 3px;
-    margin-bottom: 3px;
     width: 22px;
     height: 22px;
   }

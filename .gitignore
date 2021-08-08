@@ -7,3 +7,4 @@ functions
 .firebaserc
 firebase-init.js
 firebase.json
+.netlify
