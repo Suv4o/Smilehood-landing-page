@@ -417,8 +417,7 @@ button:focus {
 
 .contact {
   &__modal {
-    // display: none;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -430,15 +429,20 @@ button:focus {
     padding-right: 15px;
   }
   &__modal-content {
-    // opacity: 0;
+    opacity: 0;
     max-width: 579px;
     padding: 60px 64px;
     border-radius: 4px;
-    background-color: rgb(69, 69, 69, 0.1);
+    background-color: rgb(69, 69, 69, 1);
+    @supports not (-moz-appearance: none) {
+      background-color: rgb(69, 69, 69, 0.1);
+    }
     -webkit-backdrop-filter: blur(30px);
     backdrop-filter: blur(30px);
     @include breakpoint-down(small) {
-      background-color: rgb(69, 69, 69, 0.3);
+      @supports not (-moz-appearance: none) {
+        background-color: rgb(69, 69, 69, 0.3);
+      }
     }
     @include breakpoint-down(xsmall) {
       padding: 42px 45px;
@@ -503,6 +507,9 @@ button:focus {
       }
     }
     button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 106px;
       height: 38px;
       border: transparent;

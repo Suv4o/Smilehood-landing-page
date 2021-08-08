@@ -35,6 +35,7 @@ const windowSize = setWindowSize();
 windowSize.setWatcherWidth(() => {
   clearAnimation();
   clearAllTimeouts(window);
+  clearMsgs();
   updateValues();
 });
 
@@ -150,6 +151,13 @@ function clearAnimation() {
   gsap.set("#contact-modal-content", { clearProps: "all" });
 }
 
+function clearMsgs() {
+  subscribeMsg.className = "";
+  subscribeMsg.innerHTML = "";
+  contactMsg.className = "";
+  contactMsg.innerHTML = "";
+}
+
 function setWindowSize() {
   return {
     widthInternal: getWidthSize(),
@@ -207,10 +215,10 @@ function hideContactModalAnimation() {
 }
 
 function clearAllTimeouts(windowObject) {
-  var id = Math.max(windowObject.setTimeout(noop, 1000));
+  let id = Math.max(windowObject.setTimeout(noop, 1000));
 
   while (id--) {
-    windowObject.clearInterval(id);
+    windowObject.clearTimeout(id);
   }
 
   function noop() {}
@@ -228,10 +236,6 @@ async function subscribe(e) {
   if (!formValidation) {
     btnSubscribe.innerHTML = `Subscribe`;
     btnSubscribe.disabled = false;
-    setTimeout(() => {
-      subscribeMsg.className = "";
-      subscribeMsg.innerHTML = "";
-    }, 10000);
     return;
   } else {
     await sendingEmailToUs({
@@ -252,23 +256,25 @@ async function subscribe(e) {
   }
 }
 
-function sandContact(e) {
+async function sandContact(e) {
   e.preventDefault();
   const objFormData = Object.fromEntries(new FormData(e.target));
   btnSend.innerHTML = `<div class="loading-animation"><div></div><div></div><div></div><div></div></div>`;
   btnSend.disabled = true;
 
-  const formValidation = isValidContact(objFormData);
+  const formValidation = await isValidContact(objFormData);
 
   if (!formValidation) {
     btnSend.innerHTML = `Send`;
     btnSend.disabled = false;
-    setTimeout(() => {
-      contactMsg.className = "";
-      contactMsg.innerHTML = "";
-    }, 10000);
     return;
   } else {
+    await sendingEmailToUs({
+      from: "Smilehood",
+      to: "mysmilehood@gmail.com",
+      subject: "New Contact!",
+      text: `Someone has contacted you. Name: ${objFormData.name}, Email: ${objFormData.email}, Message: ${objFormData.message}`,
+    });
     btnSend.innerHTML = `Send`;
     btnSend.disabled = false;
     formContact.reset();
@@ -300,10 +306,10 @@ async function isValidSubscriber(objFormData) {
   return true;
 }
 
-function isValidContact(objFormData) {
+async function isValidContact(objFormData) {
   const { name, email, message } = objFormData;
-  const emailValidation = isTheEmailValidContact(email);
   const nameValidation = isNameValid(name);
+  const emailValidation = isTheEmailValidContact(email);
   const messageValidation = isMessageValid(message);
   const arrErrors = [];
 
@@ -330,6 +336,13 @@ function isValidContact(objFormData) {
       innerHTML += message + "<br>";
     });
     contactMsg.innerHTML = innerHTML;
+    return false;
+  }
+
+  const isSuccessful = await contactFirebase(objFormData);
+  if (!isSuccessful) {
+    contactMsg.className = "error-msg";
+    contactMsg.innerHTML = "Something went wrong.";
     return false;
   }
   return true;
@@ -459,6 +472,23 @@ async function subscribeFirebase(email) {
     try {
       await firestore.collection("subscribers").add({
         email: email.toLowerCase(),
+      });
+      resolve(true);
+    } catch (error) {
+      reject(false);
+      console.error("Error adding document in the database: ", error);
+    }
+  });
+}
+
+async function contactFirebase(objFormData) {
+  const { name, email, message } = objFormData;
+  return new Promise(async (resolve, reject) => {
+    try {
+      await firestore.collection("contact-form").add({
+        name,
+        email: email.toLowerCase(),
+        message,
       });
       resolve(true);
     } catch (error) {
