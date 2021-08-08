@@ -396,22 +396,6 @@ button:focus {
         }
       }
     }
-    .error-msg {
-      margin-top: 8px;
-      font-size: 16px;
-      color: $orange-color;
-      @include breakpoint-down(small) {
-        font-size: 12px;
-      }
-    }
-    .success-msg {
-      margin-top: 8px;
-      font-size: 16px;
-      color: $yellow-color;
-      @include breakpoint-down(small) {
-        font-size: 12px;
-      }
-    }
     .info-msg {
       width: 270px;
       height: 62px;
@@ -433,7 +417,8 @@ button:focus {
 
 .contact {
   &__modal {
-    display: none;
+    // display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -445,21 +430,18 @@ button:focus {
     padding-right: 15px;
   }
   &__modal-content {
-    opacity: 0;
+    // opacity: 0;
     max-width: 579px;
-    height: 603px;
     padding: 60px 64px;
     border-radius: 4px;
     background-color: rgb(69, 69, 69, 0.1);
     -webkit-backdrop-filter: blur(30px);
     backdrop-filter: blur(30px);
     @include breakpoint-down(small) {
-      height: 480px;
       background-color: rgb(69, 69, 69, 0.3);
     }
     @include breakpoint-down(xsmall) {
       padding: 42px 45px;
-      height: 440px;
     }
     div {
       display: flex;
@@ -520,7 +502,6 @@ button:focus {
         font-size: 13px;
       }
     }
-
     button {
       width: 106px;
       height: 38px;
@@ -533,6 +514,14 @@ button:focus {
       color: $black-color;
       cursor: pointer;
       transition: background-color 0.5s ease-in-out, border 0.3s ease-in-out;
+      &:disabled {
+        cursor: unset;
+        background-color: $light-gray-color;
+        &:hover {
+          background-color: $light-gray-color;
+          border: transparent;
+        }
+      }
       @include breakpoint-down(small) {
         width: 74px;
         height: 27px;
@@ -591,5 +580,22 @@ button:focus {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.error-msg {
+  margin-top: 5px !important;
+  font-size: 16px !important;
+  color: $orange-color !important;
+  @include breakpoint-down(small) {
+    font-size: 12px !important;
+  }
+}
+.success-msg {
+  margin-top: 5px !important;
+  font-size: 16px !important;
+  color: $yellow-color !important;
+  @include breakpoint-down(small) {
+    font-size: 12px !important;
   }
 }

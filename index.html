@@ -106,15 +106,17 @@
       <div id="contact-modal-content" class="contact__modal-content">
         <div>
           <p>Investor Contact</p>
-          <form id="contact-form">
-            <input name="name" placeholder="Name" type="text" />
-            <input name="email" placeholder="Email" type="text" />
+          <form id="form-contact">
+            <input name="name" placeholder="Name" type="text" required />
+            <input name="email" placeholder="Email" type="email" required />
             <textarea
               name="message"
               placeholder="Message"
               cols="30"
               rows="10"
+              required
             ></textarea>
+            <p id="contact-msg"></p>
             <button id="btn-send" type="submit">Send</button>
           </form>
         </div>

@@ -6,7 +6,9 @@ const btnSend = document.getElementById("btn-send");
 const btnContact = document.getElementById("btn-contact");
 const btnSubscribe = document.getElementById("btn-subscribe");
 const formSubscribe = document.getElementById("form-subscribe");
+const formContact = document.getElementById("form-contact");
 const subscribeMsg = document.getElementById("subscribe-msg");
+const contactMsg = document.getElementById("contact-msg");
 const contactModal = document.getElementById("contact-modal");
 const contactModalContent = document.getElementById("contact-modal-content");
 
@@ -37,6 +39,7 @@ windowSize.setWatcherWidth(() => {
 });
 
 // Event Listeners
+formContact.addEventListener("submit", sandContact);
 formSubscribe.addEventListener("submit", subscribe);
 btnShowMore.addEventListener("click", showMore);
 btnContact.addEventListener("click", showContactModal);
@@ -216,13 +219,19 @@ function clearAllTimeouts(windowObject) {
 async function subscribe(e) {
   e.preventDefault();
   const objFormData = Object.fromEntries(new FormData(e.target));
+  subscribeMsg.className = "";
+  subscribeMsg.innerHTML = "";
   btnSubscribe.innerHTML = `<div class="loading-animation"><div></div><div></div><div></div><div></div></div>`;
   btnSubscribe.disabled = true;
-  const formValidation = await isValid(objFormData);
+  const formValidation = await isValidSubscriber(objFormData);
 
   if (!formValidation) {
     btnSubscribe.innerHTML = `Subscribe`;
     btnSubscribe.disabled = false;
+    setTimeout(() => {
+      subscribeMsg.className = "";
+      subscribeMsg.innerHTML = "";
+    }, 10000);
     return;
   } else {
     await sendingEmailToUs({
@@ -243,34 +252,90 @@ async function subscribe(e) {
   }
 }
 
-async function isValid(objFormData) {
+function sandContact(e) {
+  e.preventDefault();
+  const objFormData = Object.fromEntries(new FormData(e.target));
+  btnSend.innerHTML = `<div class="loading-animation"><div></div><div></div><div></div><div></div></div>`;
+  btnSend.disabled = true;
+
+  const formValidation = isValidContact(objFormData);
+
+  if (!formValidation) {
+    btnSend.innerHTML = `Send`;
+    btnSend.disabled = false;
+    setTimeout(() => {
+      contactMsg.className = "";
+      contactMsg.innerHTML = "";
+    }, 10000);
+    return;
+  } else {
+    btnSend.innerHTML = `Send`;
+    btnSend.disabled = false;
+    formContact.reset();
+    contactMsg.className = "success-msg";
+    contactMsg.innerHTML = "Thank you for getting in touch!";
+    setTimeout(() => {
+      contactMsg.className = "";
+      contactMsg.innerHTML = "";
+    }, 10000);
+  }
+}
+
+async function isValidSubscriber(objFormData) {
   const { email } = objFormData;
 
-  const emailValidation = await isTheEmailValid(email);
+  const emailValidation = await isTheEmailValidSubscription(email);
 
   if (!emailValidation.isValid) {
     subscribeMsg.className = "error-msg";
     subscribeMsg.innerHTML = emailValidation.msg;
-    setTimeout(() => {
-      subscribeMsg.className = "";
-      subscribeMsg.innerHTML = "";
-    }, 10000);
     return false;
   }
   const isSuccessful = await subscribeFirebase(email);
   if (!isSuccessful) {
     subscribeMsg.className = "error-msg";
     subscribeMsg.innerHTML = "Something went wrong.";
-    setTimeout(() => {
-      subscribeMsg.className = "";
-      subscribeMsg.innerHTML = "";
-    }, 10000);
     return false;
   }
   return true;
 }
 
-async function isTheEmailValid(email) {
+function isValidContact(objFormData) {
+  const { name, email, message } = objFormData;
+  const emailValidation = isTheEmailValidContact(email);
+  const nameValidation = isNameValid(name);
+  const messageValidation = isMessageValid(message);
+  const arrErrors = [];
+
+  if (!nameValidation.isValid) {
+    arrErrors.push(nameValidation.msg);
+  }
+
+  if (!emailValidation.isValid) {
+    arrErrors.push(emailValidation.msg);
+  }
+
+  if (!messageValidation.isValid) {
+    arrErrors.push(messageValidation.msg);
+  }
+
+  if (
+    !emailValidation.isValid ||
+    !nameValidation.isValid ||
+    !messageValidation.isValid
+  ) {
+    contactMsg.className = "error-msg";
+    let innerHTML = "";
+    arrErrors.forEach((message) => {
+      innerHTML += message + "<br>";
+    });
+    contactMsg.innerHTML = innerHTML;
+    return false;
+  }
+  return true;
+}
+
+async function isTheEmailValidSubscription(email) {
   if (!isEmailValid(email)) {
     return {
       isValid: false,
@@ -287,6 +352,18 @@ async function isTheEmailValid(email) {
     };
   }
 
+  return {
+    isValid: true,
+  };
+}
+
+function isTheEmailValidContact(email) {
+  if (!isEmailValid(email)) {
+    return {
+      isValid: false,
+      msg: "Please enter a valid Email Address.",
+    };
+  }
   return {
     isValid: true,
   };
@@ -312,8 +389,68 @@ function isEmailDuplicate(field) {
   });
 }
 
+function isNameValid(name) {
+  if (!isRequiredFieldValid(name)) {
+    return {
+      isValid: false,
+      msg: "The name is required!",
+    };
+  }
+
+  if (!isMaxNumberValid(name, 20)) {
+    return {
+      isValid: false,
+      msg: "The name needs to be less than 20 characters!",
+    };
+  }
+
+  if (!isAlphaCharacterValid(name)) {
+    return {
+      isValid: false,
+      msg: "Only Alpha characters are allowed!",
+    };
+  }
+  return {
+    isValid: true,
+  };
+}
+
+function isMessageValid(message) {
+  if (!isRequiredFieldValid(message)) {
+    return {
+      isValid: false,
+      msg: "The message is required!",
+    };
+  }
+
+  if (!isMaxNumberValid(message, 200)) {
+    return {
+      isValid: false,
+      msg: "The message needs to be less than 200 characters!",
+    };
+  }
+  return {
+    isValid: true,
+  };
+}
+
 function isEmailValid(field) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field)) return false;
+  return true;
+}
+
+function isRequiredFieldValid(field) {
+  if (!field) return false;
+  return true;
+}
+
+function isMaxNumberValid(field, limit) {
+  if (!(field.length <= limit)) return false;
+  return true;
+}
+
+function isAlphaCharacterValid(field) {
+  if (!/^[a-zA-Z]*$/.test(field)) return false;
   return true;
 }
 
