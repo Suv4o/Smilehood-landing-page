@@ -72,6 +72,7 @@ button:focus {
     }
   }
   .btn_show-more {
+    display: block;
     position: absolute;
     right: 246px;
     right: 13%;
@@ -118,7 +119,7 @@ button:focus {
     }
   }
   .footer {
-    display: flex;
+    display: none;
     align-items: center;
     position: absolute;
     bottom: -325px;

@@ -80,10 +80,12 @@ function showMoreAnimation() {
       duration: 0.3,
       ease: "power4.out",
       bottom: -(showMoreBtnHeight + 10),
+      display: "none",
     });
     tlShowMore.to("#footer", {
       delay: 0.1,
       duration: 0.3,
+      display: "flex",
       bottom: 0,
       ease: "power4.out",
     });
