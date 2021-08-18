@@ -119,7 +119,8 @@ button:focus {
     }
   }
   .footer {
-    display: none;
+    display: flex;
+    visibility: hidden;
     align-items: center;
     position: absolute;
     bottom: -325px;

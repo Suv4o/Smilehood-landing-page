@@ -85,8 +85,8 @@ function showMoreAnimation() {
     tlShowMore.to("#footer", {
       delay: 0.1,
       duration: 0.3,
-      display: "flex",
       bottom: 0,
+      visibility: "visible",
       ease: "power4.out",
     });
     if (!isMobileScreen) {
