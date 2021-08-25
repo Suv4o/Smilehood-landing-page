@@ -1,131 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-    <link rel="stylesheet" href="https://use.typekit.net/epe8ppm.css" />
-    <!-- <script type="module" src="firebase-init.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
-    <script async type="module" src="/main.js"></script>
-    <title>Smilehood — Bring a Smile to Everyone</title>
-  </head>
-  <body>
-    <div id="bg_img" class="bg bg__img">
-      <div class="container">
-        <div class="content">
-          <img class="logo" src="assets/img/logo.svg" alt="Smilehood Logo" />
-          <p id="moto" class="moto">Bring a Smile to Everyone</p>
-          <div id="subscribe-group" class="subscribe-group">
-            <form id="form-subscribe" class="enter-email">
-              <input type="email" name="email" placeholder="john@gmail.com" />
-              <button id="btn-subscribe" type="submit">Subscribe</button>
-            </form>
-            <p id="subscribe-msg"></p>
-            <p class="info-msg">
-              Get notified when we go live to celebrate together
-            </p>
-          </div>
-        </div>
-      </div>
-      <button id="btn-show-more" class="btn_show-more">
-        <svg
-          id="show-more-arrow"
-          xmlns="http://www.w3.org/2000/svg"
-          width="54.92"
-          height="54.92"
-          viewBox="0 0 54.92 54.92"
-        >
-          <g
-            id="Icon_feather-arrow-down-circle"
-            data-name="Icon feather-arrow-down-circle"
-            transform="translate(-1.5 -1.5)"
-          >
-            <path
-              id="Path_21"
-              data-name="Path 21"
-              d="M54.92,28.96A25.96,25.96,0,1,1,28.96,3,25.96,25.96,0,0,1,54.92,28.96Z"
-              transform="translate(0)"
-              fill="none"
-              stroke="#fff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3"
-            />
-            <path
-              id="Path_22"
-              data-name="Path 22"
-              d="M12,18,22.384,28.384,32.768,18"
-              transform="translate(6.576 10.96)"
-              fill="none"
-              stroke="#fff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3"
-            />
-            <path
-              id="Path_23"
-              data-name="Path 23"
-              d="M18,12V32.768"
-              transform="translate(10.96 6.576)"
-              fill="none"
-              stroke="#fff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3"
-            />
-          </g>
-        </svg>
-      </button>
-      <div id="footer" class="footer">
-        <div class="container">
-          <div class="footer__content">
-            <div>
-              <p>Investors</p>
-              <button id="btn-contact" class="btn">Contact</button>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+        <link rel="stylesheet" href="https://use.typekit.net/epe8ppm.css" />
+        <!-- <script type="module" src="firebase-init.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+        <script async type="module" src="/main.js"></script>
+        <title>Smilehood — Bring a Smile to Everyone</title>
+    </head>
+    <body>
+        <div id="bg_img" class="bg bg__img">
+            <div class="container">
+                <div class="content">
+                    <img
+                        class="logo"
+                        src="assets/img/logo.svg"
+                        alt="Smilehood Logo"
+                    />
+                    <p id="moto" class="moto">Bring a Smile to Everyone</p>
+                    <div id="subscribe-group" class="subscribe-group">
+                        <form id="form-subscribe" class="enter-email">
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="john@gmail.com"
+                            />
+                            <button id="btn-subscribe" type="submit">
+                                Subscribe
+                            </button>
+                        </form>
+                        <p id="subscribe-msg"></p>
+                        <p class="info-msg">
+                            Get notified when we go live to celebrate together
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="line"></div>
-            <div>
-              <p>Early Adopters</p>
-              <div>
-                <button disabled class="btn">Apply</button
-                ><span class="coming-soon">Coming Soon</span>
-              </div>
+            <button id="btn-show-more" class="btn_show-more">
+                <svg
+                    id="show-more-arrow"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="54.92"
+                    height="54.92"
+                    viewBox="0 0 54.92 54.92"
+                >
+                    <g
+                        id="Icon_feather-arrow-down-circle"
+                        data-name="Icon feather-arrow-down-circle"
+                        transform="translate(-1.5 -1.5)"
+                    >
+                        <path
+                            id="Path_21"
+                            data-name="Path 21"
+                            d="M54.92,28.96A25.96,25.96,0,1,1,28.96,3,25.96,25.96,0,0,1,54.92,28.96Z"
+                            transform="translate(0)"
+                            fill="none"
+                            stroke="#fff"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="3"
+                        />
+                        <path
+                            id="Path_22"
+                            data-name="Path 22"
+                            d="M12,18,22.384,28.384,32.768,18"
+                            transform="translate(6.576 10.96)"
+                            fill="none"
+                            stroke="#fff"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="3"
+                        />
+                        <path
+                            id="Path_23"
+                            data-name="Path 23"
+                            d="M18,12V32.768"
+                            transform="translate(10.96 6.576)"
+                            fill="none"
+                            stroke="#fff"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="3"
+                        />
+                    </g>
+                </svg>
+            </button>
+            <div id="footer" class="footer">
+                <div class="container">
+                    <div class="footer__content">
+                        <button
+                            id="btn-footer-close"
+                            class="footer__content-btn-close"
+                        >
+                            &times;
+                        </button>
+                        <div>
+                            <p>Investors</p>
+                            <button id="btn-contact" class="btn">
+                                Contact
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div>
+                            <p>Early Adopters</p>
+                            <div>
+                                <button disabled class="btn">Apply</button
+                                ><span class="coming-soon">Coming Soon</span>
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div>
+                            <p>We are Hiring</p>
+                            <a
+                                href="https://good-axolotl-d07.notion.site/816486f1003e4e7c8b1f86429b6a68ea?v=4553497730c04c699cc16633fef9c452"
+                                target="_blank"
+                                class="btn"
+                                >See Open Positions</a
+                            >
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="line"></div>
-            <div>
-              <p>We are Hiring</p>
-              <a
-                href="https://good-axolotl-d07.notion.site/816486f1003e4e7c8b1f86429b6a68ea?v=4553497730c04c699cc16633fef9c452"
-                target="_blank"
-                class="btn"
-                >See Open Positions</a
-              >
+        </div>
+        <div id="contact-modal" class="contact__modal">
+            <div id="contact-modal-content" class="contact__modal-content">
+                <button id="btn-contact-close" class="contact__btn-close">
+                    &times;
+                </button>
+                <div>
+                    <p>Investor Contact</p>
+                    <form id="form-contact">
+                        <input
+                            name="name"
+                            placeholder="Name"
+                            type="text"
+                            required
+                        />
+                        <input
+                            name="email"
+                            placeholder="Email"
+                            type="email"
+                            required
+                        />
+                        <textarea
+                            name="message"
+                            placeholder="Message"
+                            cols="30"
+                            rows="10"
+                            required
+                        ></textarea>
+                        <p id="contact-msg"></p>
+                        <button id="btn-send" type="submit">Send</button>
+                    </form>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-    <div id="contact-modal" class="contact__modal">
-      <div id="contact-modal-content" class="contact__modal-content">
-        <div>
-          <p>Investor Contact</p>
-          <form id="form-contact">
-            <input name="name" placeholder="Name" type="text" required />
-            <input name="email" placeholder="Email" type="email" required />
-            <textarea
-              name="message"
-              placeholder="Message"
-              cols="30"
-              rows="10"
-              required
-            ></textarea>
-            <p id="contact-msg"></p>
-            <button id="btn-send" type="submit">Send</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </body>
+    </body>
 </html>

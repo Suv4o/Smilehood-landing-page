@@ -2,8 +2,8 @@
 @import "_variables.scss";
 
 body {
-  background-color: $gray-color;
-  font-family: acumin-pro, sans-serif;
+    background-color: $gray-color;
+    font-family: acumin-pro, sans-serif;
 }
 
 html,
@@ -11,14 +11,14 @@ body,
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  line-height: 1.3;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.3;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 a:focus,
@@ -26,584 +26,630 @@ input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-  outline: 5px dotted $yellow-color;
-  outline-offset: 3px;
-  @include breakpoint-down(small) {
+    outline: 5px dotted $yellow-color;
     outline-offset: 3px;
-  }
+    @include breakpoint-down(small) {
+        outline-offset: 3px;
+    }
 }
 
 ::selection {
-  color: $gray-color;
-  background: $yellow-color;
+    color: $gray-color;
+    background: $yellow-color;
 }
 
 .container {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 120rem;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 120rem;
 }
 
 .bg {
-  position: relative;
-  overflow: hidden;
-  @include breakpoint-down(xsmall) {
-    display: flex;
-    align-items: center;
-  }
-  &__img {
-    background-image: url("https://res.cloudinary.com/smilehood/image/upload/q_auto,f_auto,w_1400,e_sharpen:100/v1627649149/landing-page/bg_img_croped");
-    height: 100vh;
-    min-height: 750px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 100% 50%;
-    @include breakpoint-down(xxlarge) {
-      background-position: 50% 50%;
-    }
-    @include breakpoint-down(large) {
-      background-image: url("https://res.cloudinary.com/smilehood/image/upload/q_auto,f_auto,w_900,e_sharpen:100/v1627649149/landing-page/bg_img_croped");
-      background-position: 70% 50%;
-    }
+    position: relative;
+    overflow: hidden;
     @include breakpoint-down(xsmall) {
-      background-image: url("https://res.cloudinary.com/smilehood/image/upload/q_auto,f_auto,w_700,e_sharpen:100/v1627649149/landing-page/bg_img_croped");
-      min-height: 550px;
-    }
-  }
-  .btn_show-more {
-    display: block;
-    position: absolute;
-    right: 246px;
-    right: 13%;
-    bottom: 0;
-    width: 113px;
-    height: 115px;
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-    border: transparent;
-    background-color: $yellow-color;
-    cursor: pointer;
-    transition: background-color 0.5s ease-in-out, border 0.3s ease-in-out;
-    @include breakpoint-down(small) {
-      width: 79px;
-      height: 80px;
-    }
-    @include breakpoint-down(xsmall) {
-      width: 63px;
-      height: 64px;
-    }
-    svg {
-      transform: rotate(360deg);
-      transform-origin: center center;
-      @include breakpoint-down(small) {
-        transform: scale(0.75);
-      }
-      @include breakpoint-down(xsmall) {
-        transform: scale(0.6);
-      }
-      path {
-        transition: all 0.5s ease-in-out;
-        stroke: $white-color;
-      }
-    }
-    &:hover {
-      background-color: $darker-yellow-color;
-      border: 1px solid $gray-color;
-      svg {
-        path {
-          transition: all 0.5s ease-in-out;
-          stroke: $gray-color;
-        }
-      }
-    }
-  }
-  .footer {
-    display: flex;
-    visibility: hidden;
-    align-items: center;
-    position: absolute;
-    bottom: -325px;
-    width: 100%;
-    height: 325px;
-    background-color: $yellow-color;
-    @include breakpoint-down(medium) {
-      bottom: -227px;
-      height: 227px;
-    }
-    @media (max-height: 53.125em) and (min-width: 48em) {
-      bottom: -227px;
-      height: 227px;
-    }
-    @include breakpoint-down(small) {
-      bottom: -100%;
-      height: 100%;
-    }
-    &__content {
-      display: flex;
-      justify-content: space-between;
-      margin-left: 215px;
-      margin-right: 215px;
-      @include breakpoint-down(xlarge) {
-        margin-left: 150px;
-        margin-right: 150px;
-      }
-      @include breakpoint-down(large) {
-        margin-left: 100px;
-        margin-right: 100px;
-      }
-      @include breakpoint-down(small) {
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-      }
-      @include breakpoint-down(xsmall) {
-        margin-left: 25px;
-        margin-right: 25px;
-      }
-      ::selection {
-        color: $yellow-color;
-        background: $gray-color;
-      }
-      & > div {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
+        align-items: center;
+    }
+    &__img {
+        background-image: url("https://res.cloudinary.com/smilehood/image/upload/q_auto,f_auto,w_1400,e_sharpen:100/v1627649149/landing-page/bg_img_croped");
+        height: 100vh;
+        min-height: 750px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 100% 50%;
+        @include breakpoint-down(xxlarge) {
+            background-position: 50% 50%;
+        }
+        @include breakpoint-down(large) {
+            background-image: url("https://res.cloudinary.com/smilehood/image/upload/q_auto,f_auto,w_900,e_sharpen:100/v1627649149/landing-page/bg_img_croped");
+            background-position: 70% 50%;
+        }
         @include breakpoint-down(xsmall) {
-          align-items: center;
+            background-image: url("https://res.cloudinary.com/smilehood/image/upload/q_auto,f_auto,w_700,e_sharpen:100/v1627649149/landing-page/bg_img_croped");
+            min-height: 550px;
         }
-        p {
-          font-size: 43px;
-          font-weight: 200;
-          line-height: 0.74;
-          text-align: left;
-          color: $black-color;
-          margin-bottom: 24px;
-          @include breakpoint-down(medium) {
-            font-size: 30px;
-            margin-bottom: 17px;
-          }
-          @media (max-height: 53.125em) and (min-width: 48em) and (max-width: 74.9375em) {
-            font-size: 30px;
-            margin-bottom: 17px;
-          }
+    }
+    .btn_show-more {
+        display: block;
+        position: absolute;
+        right: 246px;
+        right: 13%;
+        bottom: 0;
+        width: 113px;
+        height: 115px;
+        border-top-left-radius: 50%;
+        border-top-right-radius: 50%;
+        border: transparent;
+        background-color: $yellow-color;
+        cursor: pointer;
+        transition: background-color 0.5s ease-in-out, border 0.3s ease-in-out;
+        @include breakpoint-down(small) {
+            width: 79px;
+            height: 80px;
         }
-        .btn {
-          height: 38px;
-          padding-left: 34px;
-          padding-right: 34px;
-          border: transparent;
-          border-radius: 5px;
-          color: $black-color;
-          background-color: $white-color;
-          font-size: 18px;
-          font-weight: 200;
-          line-height: 2;
-          cursor: pointer;
-          transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-          @include breakpoint-down(medium) {
-            height: 26px;
-            padding-left: 24px;
-            padding-right: 24px;
-            border-radius: 3.5px;
-            font-size: 13px;
-          }
-          @media (max-height: 53.125em) and (min-width: 48em) and (max-width: 74.9375em) {
-            height: 26px;
-            padding-left: 24px;
-            padding-right: 24px;
-            border-radius: 3.5px;
-            font-size: 13px;
-          }
-          &:disabled {
-            opacity: 0.5;
-            cursor: unset;
-            &:hover {
-              color: $black-color;
-              background-color: $white-color;
+        @include breakpoint-down(xsmall) {
+            width: 63px;
+            height: 64px;
+        }
+        svg {
+            transform: rotate(360deg);
+            transform-origin: center center;
+            @include breakpoint-down(small) {
+                transform: scale(0.75);
             }
-          }
-          &:hover {
-            background-color: $gray-color;
-            color: $white-color;
-          }
+            @include breakpoint-down(xsmall) {
+                transform: scale(0.6);
+            }
+            path {
+                transition: all 0.5s ease-in-out;
+                stroke: $white-color;
+            }
         }
-        .coming-soon {
-          font-size: 23px;
-          font-weight: 200;
-          line-height: 1.39;
-          margin-left: 31px;
-          color: $black-color;
-          @include breakpoint-down(medium) {
-            font-size: 16px;
-            margin-left: 22px;
-          }
-          @media (max-height: 53.125em) and (min-width: 48em) and (max-width: 74.9375em) {
-            font-size: 16px;
-            margin-left: 22px;
-          }
+        &:hover {
+            background-color: $darker-yellow-color;
+            border: 1px solid $gray-color;
+            svg {
+                path {
+                    transition: all 0.5s ease-in-out;
+                    stroke: $gray-color;
+                }
+            }
         }
-      }
-      .line {
-        width: 1px;
-        height: 155px;
-        background-color: $orange-color;
+    }
+    .footer {
+        display: flex;
+        visibility: hidden;
+        align-items: center;
+        position: absolute;
+        bottom: -325px;
+        width: 100%;
+        height: 325px;
+        background-color: $yellow-color;
         @include breakpoint-down(medium) {
-          height: 108px;
+            bottom: -227px;
+            height: 227px;
         }
-        @media (max-height: 53.125em) and (min-width: 48em) and (max-width: 74.9375em) {
-          height: 108px;
+        @media (max-height: 53.125em) and (min-width: 48em) {
+            bottom: -227px;
+            height: 227px;
         }
         @include breakpoint-down(small) {
-          margin-top: 30px;
-          margin-bottom: 30px;
-          height: 1px;
-          width: 180px;
+            bottom: -100%;
+            height: 100%;
         }
-      }
+        &__content {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 215px;
+            margin-right: 215px;
+            @include breakpoint-down(xlarge) {
+                margin-left: 150px;
+                margin-right: 150px;
+            }
+            @include breakpoint-down(large) {
+                margin-left: 100px;
+                margin-right: 100px;
+            }
+            @include breakpoint-down(small) {
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+            }
+            @include breakpoint-down(xsmall) {
+                margin-left: 25px;
+                margin-right: 25px;
+            }
+            ::selection {
+                color: $yellow-color;
+                background: $gray-color;
+            }
+            &-btn-close {
+                display: none;
+                @include breakpoint-down(small) {
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    height: 35px;
+                    width: 35px;
+                    border: transparent;
+                    border-radius: 5px 0 5px 5px;
+                    color: $black-color;
+                    background-color: $white-color;
+                    font-size: 24px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease-in-out,
+                        color 0.3s ease-in-out;
+                    &:hover {
+                        background-color: $gray-color;
+                        color: $white-color;
+                    }
+                }
+            }
+            & > div {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                @include breakpoint-down(xsmall) {
+                    align-items: center;
+                }
+                p {
+                    font-size: 43px;
+                    font-weight: 200;
+                    line-height: 0.74;
+                    text-align: left;
+                    color: $black-color;
+                    margin-bottom: 24px;
+                    @include breakpoint-down(medium) {
+                        font-size: 30px;
+                        margin-bottom: 17px;
+                    }
+                    @media (max-height: 53.125em) and (min-width: 48em) and (max-width: 74.9375em) {
+                        font-size: 30px;
+                        margin-bottom: 17px;
+                    }
+                }
+                .btn {
+                    height: 38px;
+                    padding-left: 34px;
+                    padding-right: 34px;
+                    border: transparent;
+                    border-radius: 5px;
+                    color: $black-color;
+                    background-color: $white-color;
+                    font-size: 18px;
+                    font-weight: 200;
+                    line-height: 2;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease-in-out,
+                        color 0.3s ease-in-out;
+                    @include breakpoint-down(medium) {
+                        height: 26px;
+                        padding-left: 24px;
+                        padding-right: 24px;
+                        border-radius: 3.5px;
+                        font-size: 13px;
+                    }
+                    @media (max-height: 53.125em) and (min-width: 48em) and (max-width: 74.9375em) {
+                        height: 26px;
+                        padding-left: 24px;
+                        padding-right: 24px;
+                        border-radius: 3.5px;
+                        font-size: 13px;
+                    }
+                    &:disabled {
+                        opacity: 0.5;
+                        cursor: unset;
+                        &:hover {
+                            color: $black-color;
+                            background-color: $white-color;
+                        }
+                    }
+                    &:hover {
+                        background-color: $gray-color;
+                        color: $white-color;
+                    }
+                }
+                .coming-soon {
+                    font-size: 23px;
+                    font-weight: 200;
+                    line-height: 1.39;
+                    margin-left: 31px;
+                    color: $black-color;
+                    @include breakpoint-down(medium) {
+                        font-size: 16px;
+                        margin-left: 22px;
+                    }
+                    @media (max-height: 53.125em) and (min-width: 48em) and (max-width: 74.9375em) {
+                        font-size: 16px;
+                        margin-left: 22px;
+                    }
+                }
+            }
+            .line {
+                width: 1px;
+                height: 155px;
+                background-color: $orange-color;
+                @include breakpoint-down(medium) {
+                    height: 108px;
+                }
+                @media (max-height: 53.125em) and (min-width: 48em) and (max-width: 74.9375em) {
+                    height: 108px;
+                }
+                @include breakpoint-down(small) {
+                    margin-top: 30px;
+                    margin-bottom: 30px;
+                    height: 1px;
+                    width: 180px;
+                }
+            }
+        }
     }
-  }
 }
 
 .content {
-  margin-left: 215px;
-  @include breakpoint-down(xlarge) {
-    margin-left: 150px;
-  }
-  @include breakpoint-down(large) {
-    margin-left: 100px;
-  }
-  @include breakpoint-down(xsmall) {
-    margin-left: 25px;
-    margin-right: 25px;
-  }
-  .logo {
-    width: 554px;
-    height: 110px;
-    margin-top: 116px;
-    @include breakpoint-down(small) {
-      width: 387px;
-      height: 77px;
-      margin-top: 81px;
+    margin-left: 215px;
+    @include breakpoint-down(xlarge) {
+        margin-left: 150px;
+    }
+    @include breakpoint-down(large) {
+        margin-left: 100px;
     }
     @include breakpoint-down(xsmall) {
-      width: 271px;
-      height: 54px;
-      margin-top: 0;
+        margin-left: 25px;
+        margin-right: 25px;
     }
-    @include breakpoint-down(xxsmall) {
-      width: 217px;
-      height: 43px;
-    }
-  }
-
-  .moto {
-    width: 535px;
-    height: 188px;
-    margin-top: 18vh - (18vh * 0.35);
-    color: $off-white-color;
-    font-size: 86px;
-    font-weight: 200;
-    line-height: 1.19;
-    text-align: left;
-    opacity: 1;
-    @include breakpoint-height-up(large) {
-      margin-top: 193px;
-    }
-    @include breakpoint-height-down(small) {
-      margin-top: 87px;
-    }
-    @include breakpoint-down(small) {
-      font-size: 60px;
-      width: 374px;
-      height: 132px;
-      line-height: 1.1;
-    }
-    @include breakpoint-down(xsmall) {
-      font-size: 42px;
-      width: 262px;
-      height: 93px;
-    }
-    @include breakpoint-down(xxsmall) {
-      font-size: 34px;
-      width: 210px;
-      height: 74px;
-    }
-  }
-
-  .subscribe-group {
-    margin-top: 17vh - (17vh * 0.35);
-    @include breakpoint-height-up(large) {
-      margin-top: 188px;
-    }
-    @include breakpoint-height-down(small) {
-      margin-top: 82px;
-    }
-    .enter-email {
-      display: flex;
-      input {
-        width: 451px;
-        height: 44px;
-        padding-left: 15px;
-        padding-right: 15px;
-        color: $light-gray-color;
-        border: solid 1px $white-color;
-        background-color: $gray-color;
-        font-size: 18px;
-        font-weight: 300;
-        line-height: 1.61;
-        text-align: left;
-        border-radius: 4px;
+    .logo {
+        width: 554px;
+        height: 110px;
+        margin-top: 116px;
         @include breakpoint-down(small) {
-          width: 315px;
-          height: 31px;
-          padding-left: 11px;
-          padding-right: 11px;
-          font-size: 13px;
-          border-radius: 2.8px;
+            width: 387px;
+            height: 77px;
+            margin-top: 81px;
         }
-      }
-      button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 140px;
-        height: 45px;
-        border-color: transparent;
-        border-radius: 5px;
-        background-color: $yellow-color;
-        margin-left: 14px;
-        font-size: 18px;
+        @include breakpoint-down(xsmall) {
+            width: 271px;
+            height: 54px;
+            margin-top: 0;
+        }
+        @include breakpoint-down(xxsmall) {
+            width: 217px;
+            height: 43px;
+        }
+    }
+
+    .moto {
+        width: 535px;
+        height: 188px;
+        margin-top: 18vh - (18vh * 0.35);
+        color: $off-white-color;
+        font-size: 86px;
         font-weight: 200;
-        line-height: 1.28;
-        color: $black-color;
-        cursor: pointer;
-        transition: background-color 0.5s ease-in-out, border 0.3s ease-in-out;
-        &:disabled {
-          cursor: unset;
-          background-color: $light-gray-color;
-          &:hover {
-            background-color: $light-gray-color;
-            border: transparent;
-          }
+        line-height: 1.19;
+        text-align: left;
+        opacity: 1;
+        @include breakpoint-height-up(large) {
+            margin-top: 193px;
+        }
+        @include breakpoint-height-down(small) {
+            margin-top: 87px;
         }
         @include breakpoint-down(small) {
-          width: 98px;
-          height: 31.5px;
-          border-radius: 3.5px;
-          margin-left: 9.8px;
-          font-size: 12.6px;
+            font-size: 60px;
+            width: 374px;
+            height: 132px;
+            line-height: 1.1;
         }
-        &:hover {
-          background-color: $darker-yellow-color;
-          border: 1px solid $gray-color;
+        @include breakpoint-down(xsmall) {
+            font-size: 42px;
+            width: 262px;
+            height: 93px;
         }
-      }
+        @include breakpoint-down(xxsmall) {
+            font-size: 34px;
+            width: 210px;
+            height: 74px;
+        }
     }
-    .info-msg {
-      width: 270px;
-      height: 62px;
-      margin-top: 24px;
-      font-size: 23px;
-      font-weight: 200;
-      line-height: 1.39;
-      text-align: left;
-      color: $off-white-color;
-      @include breakpoint-down(small) {
-        width: 189px;
-        height: 43px;
-        margin-top: 16px;
-        font-size: 16px;
-      }
+
+    .subscribe-group {
+        margin-top: 17vh - (17vh * 0.35);
+        @include breakpoint-height-up(large) {
+            margin-top: 188px;
+        }
+        @include breakpoint-height-down(small) {
+            margin-top: 82px;
+        }
+        .enter-email {
+            display: flex;
+            input {
+                width: 451px;
+                height: 44px;
+                padding-left: 15px;
+                padding-right: 15px;
+                color: $light-gray-color;
+                border: solid 1px $white-color;
+                background-color: $gray-color;
+                font-size: 18px;
+                font-weight: 300;
+                line-height: 1.61;
+                text-align: left;
+                border-radius: 4px;
+                @include breakpoint-down(small) {
+                    width: 315px;
+                    height: 31px;
+                    padding-left: 11px;
+                    padding-right: 11px;
+                    font-size: 13px;
+                    border-radius: 2.8px;
+                }
+            }
+            button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 140px;
+                height: 45px;
+                border-color: transparent;
+                border-radius: 5px;
+                background-color: $yellow-color;
+                margin-left: 14px;
+                font-size: 18px;
+                font-weight: 200;
+                line-height: 1.28;
+                color: $black-color;
+                cursor: pointer;
+                transition: background-color 0.5s ease-in-out,
+                    border 0.3s ease-in-out;
+                &:disabled {
+                    cursor: unset;
+                    background-color: $light-gray-color;
+                    &:hover {
+                        background-color: $light-gray-color;
+                        border: transparent;
+                    }
+                }
+                @include breakpoint-down(small) {
+                    width: 98px;
+                    height: 31.5px;
+                    border-radius: 3.5px;
+                    margin-left: 9.8px;
+                    font-size: 12.6px;
+                }
+                &:hover {
+                    background-color: $darker-yellow-color;
+                    border: 1px solid $gray-color;
+                }
+            }
+        }
+        .info-msg {
+            width: 270px;
+            height: 62px;
+            margin-top: 24px;
+            font-size: 23px;
+            font-weight: 200;
+            line-height: 1.39;
+            text-align: left;
+            color: $off-white-color;
+            @include breakpoint-down(small) {
+                width: 189px;
+                height: 43px;
+                margin-top: 16px;
+                font-size: 16px;
+            }
+        }
     }
-  }
 }
 
 .contact {
-  &__modal {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  &__modal-content {
-    opacity: 0;
-    max-width: 579px;
-    padding: 60px 64px;
-    border-radius: 4px;
-    background-color: rgb(69, 69, 69, 1);
-    @supports not (-moz-appearance: none) {
-      background-color: rgb(69, 69, 69, 0.1);
+    &__modal {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
     }
-    -webkit-backdrop-filter: blur(30px);
-    backdrop-filter: blur(30px);
-    @include breakpoint-down(small) {
-      @supports not (-moz-appearance: none) {
-        background-color: rgb(69, 69, 69, 0.3);
-      }
-    }
-    @include breakpoint-down(xsmall) {
-      padding: 42px 45px;
-    }
-    div {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    p {
-      font-size: 43px;
-      font-weight: 200;
-      margin-bottom: 30px;
-      color: $black-color;
-      @include breakpoint-down(small) {
-        font-size: 30px;
-        margin-bottom: 21px;
-      }
-      @include breakpoint-down(xxsmall) {
-        font-size: 24px;
-      }
-    }
-    input {
-      width: 100%;
-      height: 44px;
-      margin-bottom: 10px;
-      padding: 0 15px;
-      border-radius: 4px;
-      border: solid 1px $white-color;
-      background-color: $gray-color;
-      font-size: 18px;
-      font-weight: 300;
-      line-height: 1.61;
-      color: $light-gray-color;
-      @include breakpoint-down(small) {
-        height: 31px;
-        margin-bottom: 7px;
-        border-radius: 2.8px;
-        font-size: 13px;
-      }
-    }
-    textarea {
-      width: 100%;
-      height: 244px;
-      margin-bottom: 10px;
-      padding: 6px 15px;
-      border-radius: 4px;
-      border: solid 1px $white-color;
-      background-color: $gray-color;
-      font-size: 18px;
-      font-weight: 400;
-      font-family: acumin-pro, sans-serif;
-      line-height: 1.61;
-      resize: none;
-      color: $light-gray-color;
-      @include breakpoint-down(small) {
-        height: 171px;
-        margin-bottom: 7px;
-        padding: 4px 10px;
-        border-radius: 2.8px;
-        font-size: 13px;
-      }
-    }
-    button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 106px;
-      height: 38px;
-      border: transparent;
-      border-radius: 5px;
-      background-color: $yellow-color;
-      font-size: 18px;
-      font-weight: 200;
-      line-height: 1.28;
-      color: $black-color;
-      cursor: pointer;
-      transition: background-color 0.5s ease-in-out, border 0.3s ease-in-out;
-      &:disabled {
-        cursor: unset;
-        background-color: $light-gray-color;
-        &:hover {
-          background-color: $light-gray-color;
-          border: transparent;
+    &__modal-content {
+        position: relative;
+        opacity: 0;
+        max-width: 579px;
+        padding: 60px 64px;
+        border-radius: 4px;
+        background-color: rgb(69, 69, 69, 1);
+        @supports not (-moz-appearance: none) {
+            background-color: rgb(69, 69, 69, 0.1);
         }
-      }
-      @include breakpoint-down(small) {
-        width: 74px;
-        height: 27px;
-        border-radius: 3.5px;
-        font-size: 13px;
-      }
-      &:hover {
-        background-color: $darker-yellow-color;
-        border: 1px solid $gray-color;
-      }
+        -webkit-backdrop-filter: blur(30px);
+        backdrop-filter: blur(30px);
+        @include breakpoint-down(small) {
+            @supports not (-moz-appearance: none) {
+                background-color: rgb(69, 69, 69, 0.3);
+            }
+        }
+        @include breakpoint-down(xsmall) {
+            padding: 42px 45px;
+        }
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        p {
+            font-size: 43px;
+            font-weight: 200;
+            margin-bottom: 30px;
+            color: $black-color;
+            @include breakpoint-down(small) {
+                font-size: 30px;
+                margin-bottom: 21px;
+            }
+            @include breakpoint-down(xxsmall) {
+                font-size: 24px;
+            }
+        }
+        input {
+            width: 100%;
+            height: 44px;
+            margin-bottom: 10px;
+            padding: 0 15px;
+            border-radius: 4px;
+            border: solid 1px $white-color;
+            background-color: $gray-color;
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.61;
+            color: $light-gray-color;
+            @include breakpoint-down(small) {
+                height: 31px;
+                margin-bottom: 7px;
+                border-radius: 2.8px;
+                font-size: 13px;
+            }
+        }
+        textarea {
+            width: 100%;
+            height: 244px;
+            margin-bottom: 10px;
+            padding: 6px 15px;
+            border-radius: 4px;
+            border: solid 1px $white-color;
+            background-color: $gray-color;
+            font-size: 18px;
+            font-weight: 400;
+            font-family: acumin-pro, sans-serif;
+            line-height: 1.61;
+            resize: none;
+            color: $light-gray-color;
+            @include breakpoint-down(small) {
+                height: 171px;
+                margin-bottom: 7px;
+                padding: 4px 10px;
+                border-radius: 2.8px;
+                font-size: 13px;
+            }
+        }
+        button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 106px;
+            height: 38px;
+            border: transparent;
+            border-radius: 5px;
+            background-color: $yellow-color;
+            font-size: 18px;
+            font-weight: 200;
+            line-height: 1.28;
+            color: $black-color;
+            cursor: pointer;
+            transition: background-color 0.5s ease-in-out,
+                border 0.3s ease-in-out;
+            &:disabled {
+                cursor: unset;
+                background-color: $light-gray-color;
+                &:hover {
+                    background-color: $light-gray-color;
+                    border: transparent;
+                }
+            }
+            @include breakpoint-down(small) {
+                width: 74px;
+                height: 27px;
+                border-radius: 3.5px;
+                font-size: 13px;
+            }
+            &:hover {
+                background-color: $darker-yellow-color;
+                border: 1px solid $gray-color;
+            }
+        }
     }
-  }
+    &__btn-close {
+        background-color: $gray-color !important;
+        border-radius: 50% !important;
+        color: $white-color !important;
+        font-size: 30px !important;
+        height: 40px !important;
+        overflow: hidden !important;
+        position: absolute;
+        right: -6px;
+        top: -13px;
+        width: 40px !important;
+        @include breakpoint-down(small) {
+            font-size: 21px !important;
+            height: 28px !important;
+            right: -4.2px;
+            top: -9.1px;
+            width: 28px !important;
+        }
+    }
 }
 
 .loading-animation {
-  display: inline-block;
-  position: relative;
-  width: 30px;
-  height: 30px;
-  @include breakpoint-down(small) {
-    width: 22px;
-    height: 22px;
-  }
+    display: inline-block;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    @include breakpoint-down(small) {
+        width: 22px;
+        height: 22px;
+    }
 }
 .loading-animation div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  border: 3px solid $white-color;
-  border-radius: 50%;
-  animation: loading-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: $white-color transparent transparent transparent;
-  @include breakpoint-down(small) {
-    width: 22px;
-    height: 22px;
-  }
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 3px solid $white-color;
+    border-radius: 50%;
+    animation: loading-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: $white-color transparent transparent transparent;
+    @include breakpoint-down(small) {
+        width: 22px;
+        height: 22px;
+    }
 }
 .loading-animation div:nth-child(1) {
-  animation-delay: -0.45s;
+    animation-delay: -0.45s;
 }
 .loading-animation div:nth-child(2) {
-  animation-delay: -0.3s;
+    animation-delay: -0.3s;
 }
 .loading-animation div:nth-child(3) {
-  animation-delay: -0.15s;
+    animation-delay: -0.15s;
 }
 @keyframes loading-animation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .error-msg {
-  margin-top: 5px !important;
-  font-size: 16px !important;
-  color: $orange-color !important;
-  @include breakpoint-down(small) {
-    font-size: 12px !important;
-  }
+    margin-top: 5px !important;
+    font-size: 16px !important;
+    color: $orange-color !important;
+    @include breakpoint-down(small) {
+        font-size: 12px !important;
+    }
 }
 .success-msg {
-  margin-top: 5px !important;
-  font-size: 16px !important;
-  color: $yellow-color !important;
-  @include breakpoint-down(small) {
-    font-size: 12px !important;
-  }
+    margin-top: 5px !important;
+    font-size: 16px !important;
+    color: $yellow-color !important;
+    @include breakpoint-down(small) {
+        font-size: 12px !important;
+    }
 }
